@@ -1,0 +1,14 @@
+{
+  "name": "tailPointer",
+  "version": "1.0.0",
+  "description": "Linked List implementation in JavaScript",
+  "author": "Aspen James",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^6.2.0"
+  },
+	"scripts": {
+		"test": "mocha"
+	}
+}
