@@ -170,13 +170,28 @@ describe("LinkedList", function() {
 					ll.append(4);
 					ll.append("data");
 					ll.append("more data");
-
+					
 					const el = ll.head.next;
 
 					expect(ll.deleteElem(el)).to.eql(true);
 					expect(ll.head.value).to.eql(4);
 					expect(ll.head.next).to.eql(ll.tail);
 				});
+			});
+		});
+	});
+
+	describe("inserting data after an element", function() {
+		context("the element is not found in the list", function() {
+			it("returns false", function() {
+				const ll = new LinkedList();
+				ll.append(4);
+				ll.append("data");
+				ll.append("more data");
+
+				const el = new Element("notFound");
+
+				expect(ll.insertAfter(el, "dataToInsert")).to.eql(false);
 			});
 		});
 	});
