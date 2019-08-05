@@ -84,7 +84,6 @@ class LinkedList {
 				currElem = currElem.next;
 			}
 		}
-		console.log('at Func end')
 		return false;
 	}
 
