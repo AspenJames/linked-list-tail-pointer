@@ -182,6 +182,28 @@ describe("LinkedList", function() {
 	});
 
 	describe("inserting data after an element", function() {
+		context("the list is empty", function() {
+			it("returns false", function() {
+				const ll = new LinkedList();
+
+				const el = new Element("notFound");
+
+				expect(ll.insertAfter(el, "dataToInsert")).to.eql(false);
+			});
+		});
+
+		context("the element is not supplied, undefined, or null", function() {
+			it("returns false", function() {
+				const ll = new LinkedList();
+				ll.append(4);
+				ll.append("data");
+
+				expect(ll.insertAfter(undefined, "dataToInsert")).to.eql(false);
+				expect(ll.insertAfter(null, "dataToInsert")).to.eql(false);
+				expect(ll.insertAfter()).to.eql(false);
+			});
+		});
+
 		context("the element is not found in the list", function() {
 			it("returns false", function() {
 				const ll = new LinkedList();
