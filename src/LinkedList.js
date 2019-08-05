@@ -87,6 +87,43 @@ class LinkedList {
 		return false;
 	}
 
+	/**
+	 * Accepts an Element and data, returns true for a successful insertion,
+	 * false when failed. Will fail if element is not found or not supplied.
+	 *
+	 * @param {Element} elem
+	 * @param {any} data
+	 *
+	 * @returns {boolean}
+	 */
+	insertAfter(elem, data) {
+		// early return for empty list or undef. elem
+		if (!this.head || !elem) return false;
+		const insertElem = new Element(data);
+
+		// check if head elem
+		if (this.head === elem) {
+			insertElem.next = this.head.next;
+			this.head.next = insertElem;
+			return true;
+		} else {
+			let currElem = this.head;
+
+			// iterate through until we find the element or
+			// find the end of the list
+			while (currElem !== elem && currElem.next !== null) {
+				currElem = currElem.next;
+				if (currElem === elem) {
+					insertElem.next = currElem.next;
+					currElem.next = insertElem;
+					return true;
+				}
+			}
+			return false;
+		}
+
+	}
+
 }
 
 module.exports = LinkedList;
