@@ -180,4 +180,34 @@ describe("LinkedList", function() {
 			});
 		});
 	});
+
+	describe("inserting data after an element", function() {
+		context("the element is not found in the list", function() {
+			it("returns false", function() {
+				const ll = new LinkedList();
+				ll.append(4);
+				ll.append("data");
+				ll.append("more data");
+
+				const el = new Element("notFound");
+
+				expect(ll.insertAfter(el, "dataToInsert")).to.eql(false);
+			});
+		});
+
+		context("the element is found in the list", function() {
+			it("inserts the new data and returns true", function() {
+				const ll = new LinkedList();
+				ll.append(4);
+				ll.append("data");
+				ll.append("more data");
+
+				const el = ll.head.next;
+
+				expect(ll.insertAfter(el, "dataToInsert")).to.eql(true);
+				expect(ll.head.next.next.value).to.eql("dataToInsert");
+				expect(ll.head.next.next.next).to.eql(ll.tail);
+			});
+		});
+	});
 });
