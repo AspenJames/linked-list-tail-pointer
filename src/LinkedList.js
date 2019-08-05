@@ -66,9 +66,8 @@ class LinkedList {
 				this.head = null;
 				this.tail = null;
 				return true;
-			} else if (currElem === elem && currElem.next === this.tail) {
-				currElem.setNext(null);
-				this.tail = currElem;
+			} else if (currElem === elem) {
+				this.head = currElem.next
 				return true;
 			}
 			while (currElem !== this.tail) {
@@ -78,13 +77,14 @@ class LinkedList {
 						currElem.setNext(null);
 						return true;
 					}
-					let next = elem.next;
+					let next = currElem.next.next;
 					currElem.setNext(next);
 					return true;
 				}
 				currElem = currElem.next;
 			}
 		}
+		console.log('at Func end')
 		return false;
 	}
 
