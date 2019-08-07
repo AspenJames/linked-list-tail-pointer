@@ -106,6 +106,16 @@ describe("LinkedList", function() {
 			});
 		});
 
+		context("element is not supplied", function() {
+			it("returns false", function() {
+				const ll = new LinkedList();
+				ll.append(4);
+				ll.append("data");
+
+				expect(ll.deleteElem()).to.eql(false);
+			});
+		});
+
 		context("populated linked list, element not found", function() {
 			it("returns false", function() {
 				const ll = new LinkedList();

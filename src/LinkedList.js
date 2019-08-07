@@ -59,7 +59,7 @@ class LinkedList {
 	 * @returns {boolean} - success or failure of operation
 	 */
 	deleteElem(elem) {
-		if (!this.head) {
+		if (!this.head || !elem) {
 			// return early for an empty linked list
 			return false;
 		} else {
