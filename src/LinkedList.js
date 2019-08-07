@@ -9,22 +9,24 @@ class LinkedList {
 	}
 
 	/**
-	 * Accepts data, appends data as an Element to the end of the list
-	 * 
-	 * @param {any} data 
-	 * 
-	 * @returns {LinkedList}
+	 * Append an element to the end of a linked list
+	 * @param {any} data - data to insert
+	 * @returns {LinkedList} - `this`
 	 */
 	append(data) {
+		// create new element
 		let elem = new Element(data);
+		// if list is empty, set head and tail
 		if (!this.head) {
 			this.head = elem;
 			this.tail = elem;
 		} else {
+			// iterate through list to find end
 			let currElem = this.head;
 			while (currElem !== this.tail) {
 				currElem = currElem.next;
 			}
+			// add element and set tail pointer
 			currElem.setNext(elem);
 			this.tail = elem;
 		}
@@ -32,18 +34,19 @@ class LinkedList {
 	}
 
 	/**
-	 * Accepts data, prepends data as an Element to beginning of list
-	 * 
-	 * @param {any} data 
-	 * 
-	 * @returns {LinkedList}
+	 * Prepend an element to the front of a linked list
+	 * @param {any} data - the data to insert
+	 * @returns {LinkedList} - `this`
 	 */
 	prepend(data) {
+		// create new element
 		let elem = new Element(data);
+		// if list is  empty, set head and tail
 		if (!this.head) {
 			this.head = elem;
 			this.tail = elem;
 		} else {
+			// insert at head and set head pointer
 			elem.setNext(this.head);
 			this.head = elem;
 		}
@@ -51,32 +54,41 @@ class LinkedList {
 	}
 
 	/**
-	 * Accepts an Element, returns true for successful deletion, false otherwise
-	 * 
-	 * @param {Element} elem 
-	 * 
-	 * @returns {boolean}
+	 * Delete an element from a linked list
+	 * @param {Element} elem - element to delete
+	 * @returns {boolean} - success or failure of operation
 	 */
 	deleteElem(elem) {
 		if (!this.head) {
+			// return early for an empty linked list
 			return false;
 		} else {
 			let currElem = this.head;
 			if (currElem === elem && currElem === this.tail) {
+				// if list has length 1 and element is found
+				// set head and tail to null
 				this.head = null;
 				this.tail = null;
 				return true;
 			} else if (currElem === elem) {
+				// found element is head, list is longer than 1
+				// set head pointer to next
 				this.head = currElem.next
 				return true;
 			}
 			while (currElem !== this.tail) {
+				// iterate through list until we find the
+				// element or the end of the list
 				if (currElem.next === elem) {
 					if (this.tail === elem) {
+						// if element is tail, remove
+						// and set tail pointer
 						this.tail = currElem;
 						currElem.setNext(null);
 						return true;
 					}
+					// found element is not tail, remove
+					// and keep reference to the list
 					let next = currElem.next.next;
 					currElem.setNext(next);
 					return true;
@@ -84,17 +96,15 @@ class LinkedList {
 				currElem = currElem.next;
 			}
 		}
+		// return false if the element is not found
 		return false;
 	}
 
 	/**
-	 * Accepts an Element and data, returns true for a successful insertion,
-	 * false when failed. Will fail if element is not found or not supplied.
-	 *
-	 * @param {Element} elem
-	 * @param {any} data
-	 *
-	 * @returns {boolean}
+	 * Inserts an element after an existing element in a linked list
+	 * @param {Element} elem - the element to insert after
+	 * @param {any} data - the data to insert
+	 * @returns {boolean} - success or failure of operation
 	 */
 	insertAfter(elem, data) {
 		// early return for empty list or undef. elem
